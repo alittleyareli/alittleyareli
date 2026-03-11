@@ -1,0 +1,39 @@
+---
+title: archive • yareli's press
+layout: main
+---
+<script src="/content/pagefind/pagefind.js"></script>
+<script src="/content/pagefind/pagefind-ui.js"></script>
+
+<div class="grid grid-cols-1 sm:grid-cols-8 gap-2">
+  <div class="col-span-1 sm:col-span-5">
+    <div id="search-container" class="w-full p-2 border bc bg overflow-y-scroll">
+      <h3 class="text-sm font-bold uppercase mb-4">Search the Archive</h3>
+
+      <div id="search" class="w-full"></div>
+      <script src="/content/scripts/mount.js" defer></script>
+    </div>
+  </div>
+
+  <div class="col-span-1 sm:col-span-3">
+    <div class="w-full p-2 border bc bg">
+      <h3 class="text-sm font-bold uppercase mb-4">Recent Posts</h3>
+
+      <div class="flex flex-col flex-wrap w-full">
+      {% assign posts = collections.post |  reverse %}
+      {% for post in posts limit:5 %}
+        <div class="flex-auto mb-2 sm:mb-4">
+          <div class="text-xxs type uppercase">{{ post.date | date: "%Y-%m-%d"  }}</div>
+          <a class="link fg" href="{{ post.url }}">{{ post.data.title  }}</a>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-span-1 sm:col-span-8 hidden">
+    <div class="w-full p-2 border bc bg">
+      <h3 class="text-sm font-bold uppercase mb-4">Full Index</h3>
+    </div>
+  </div>
+</div>

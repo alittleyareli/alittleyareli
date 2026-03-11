@@ -1,0 +1,16 @@
+<h3 class="text-sm font-bold uppercase mb-4">Recent Posts</h3>
+
+<div class="flex flex-col flex-wrap w-full">
+{% assign posts = posts |  reverse %}
+{% for post in posts limit:limit %}
+  <div class="flex-auto mb-2 sm:mb-4">
+    <div class="text-xxs type uppercase">{{ post.date | date: "%Y-%m-%d"  }}</div>
+    <a class="link fg" href="{{ post.url }}">{{ post.data.title  }}</a>
+  </div>
+{% endfor %}
+{% unless page.url == "/pages/archive/" %}
+  <div class="flex-auto mt-auto">
+    <a class="link text-xxs type font-bold uppercase" href="/pages/archive/">See Full Archive &gt;&gt;</a>
+  </div>
+{% endunless %}
+</div>

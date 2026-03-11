@@ -1,0 +1,44 @@
+@font-face {
+  font-display: block;
+  font-family: "Windows Regular";
+  src: url(/content/fonts/windows-regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-display: block;
+  font-family: "Diatype Variable";
+  src: url(/content/fonts/diatype-variable.ttf) formaat("truetype");
+}
+
+a, p, b, i, em, li, h1, h2, h3, h4, h5, h6 {
+  color: var(--color-1);
+  font-family: "Diatype Variable", sans-serif;
+}
+
+span, p, h1, h2, h3, h4, h5, h6 {
+  cursor: var(--cursor-text) 16 0, text;
+}
+
+.type {
+  color: var(--color-1);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-family: "Windows Regular", sans-serif;
+}
+
+.text-xxs {
+  font-size: 0.6rem;
+  line-height: 1rem;
+}
+
+.lc { color: var(--color-brighter); }
+.dc { color: var(--color-darker); }
+
+.fg { color: var(--color-1); }
+.fg-i { color: var(--color-2); }
+
+.bg { background-color: var(--color-2); }
+.bg-i { background-color: var(--color-1); }
+
+.bc { border-color: var(--color-1); }
+.bc-i { border-color: var(--color-2); }

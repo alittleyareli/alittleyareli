@@ -1,0 +1,39 @@
+---
+title: yareli's press
+layout: main
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-2 sm:gap-4">
+  <div class="col-auto sm:col-span-2 order-1 overflow-hidden">
+    <div class="w-full p-2 border bc bg">
+      <h2 class="text-sm text-center font-bold uppercase mb-0.5 mx-auto">yareli's press</h2>
+      <img class="w-1/4 sm:w-2/5 float-left mr-2 rounded-lg" src="/content/images/icon.jpg" />
+      <div class="type text-xs text-left">
+        <p>
+          hello hello. welcome to my personal blog and website. i like to
+          write about games, manga, personal, and whatever else. this site is still
+          under construction, hope you don't mind the scaffolding and missing pages.
+          everything works as intended on mobile browsers, but it's best
+          experienced on desktop. anyways, enjoy your stay!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto sm:col-span-4 order-2 sm:order-3 md:order-2 p-2 border bc bg-i">
+    <h1 class="text-sm font-bold uppercase mb-4 fg-i">Featured Post</h1>
+
+    {% assign featured = collections.featuredPosts | first %}
+    <span class="type text-xs fg-i">{{ featured.date | date: "%b %d, %Y" }}</span>
+    <h1 class="text-lg sm:text-xl font-bold fg-i mb-4">{{ featured.data.title }}</h1>
+
+    <div id="content" class="fg-i strip-content">
+      {{ featured.content | truncatewords: 95 }}
+    </div>
+
+    <a class="link text-sm type font-bold uppercase fg-i" href="{{ featured.url  }}">Read Full Post &gt;&gt;</a>
+
+  </div>
+  <div class="col-auto sm:col-span-2 order-3 sm:order-2 md:order-3 p-1 sm:p-2 border bc bg">
+    {% render "_includes/posts.liquid", posts: collections.post, limit: 4 %}
+  </div>
+</div>

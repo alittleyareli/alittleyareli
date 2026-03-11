@@ -1,0 +1,38 @@
+:root {
+  /* #32171a #daba8f */
+
+  --color-1: #f4c2c2;
+  --color-2: #2d1131;
+
+  --color-brighter: #f4c2c2;
+  --color-darker: #2d1131;
+
+  --marquee-speed: 30s;
+  --page-fade-speed: 0.65s;
+}
+
+[data-theme="light"] {
+  --color-1: #2d1131;
+  --color-2: #f4c2c2;
+
+  --cursor-default: url("/content/images/cursors/q-dark.png");
+  --cursor-pointer: url("/content/images/cursors/e-dark.png");
+  --cursor-text: url("/content/images/cursors/o-dark.png");
+
+  .theme-icon {
+    filter: grayscale(100%) brightness(200%);
+  }
+}
+
+[data-theme="dark"] {
+  --color-1: #f4c2c2;
+  --color-2: #2d1131;
+
+  --cursor-default: url("/content/images/cursors/q-light.png");
+  --cursor-pointer: url("/content/images/cursors/e-light.png");
+  --cursor-text: url("/content/images/cursors/o-light.png");
+
+  .theme-icon {
+    filter: grayscale(100%) brightness(0%);
+  }
+}

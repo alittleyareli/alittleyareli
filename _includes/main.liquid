@@ -1,0 +1,101 @@
+---
+title: blank title
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ title }}</title>
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link href="/content/style/_main.css" rel="stylesheet" type="text/css" />
+  <link href="/content/pagefind/pagefind-ui.css" rel="stylesheet" type="text/css" />
+
+  <link href="/content/style/tailwind.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <main id="page" class="flex min-h-screen">
+    <div class="fixed top-0 start-0 z-20 px-0 pt-0.5 w-full type text-sm bg">
+      <div class="marquee">
+        <div class="marquee-content">
+          <span>i have an unhealthy tendency to believe in ghosts when telling ghost stories.</span>
+          <span>///</span>
+          <span>the sun has sent her messenger. do not relent. look inward and come ablaze.</span>
+          <span>///</span>
+          <span>like, ask the slug to meet you on the other end of the salt mine and you get no more slug.</span>
+          <span>///</span>
+          <span>is it a return or a failure to succumb to the tide?</span>
+          <span>///</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span>i have an unhealthy tendency to believe in ghosts when telling ghost stories.</span>
+          <span>///</span>
+          <span>the sun has sent her messenger. do not relent. look inward and come ablaze.</span>
+          <span>///</span>
+          <span>like, ask the slug to meet you on the other end of the salt mine and you get no more slug.</span>
+          <span>///</span>
+          <span>is it a return or a failure to succumb to the tide?</span>
+          <span>///</span>
+        </div>
+      </div>
+      <hr class="w-full border-b bc">
+    </div>
+
+    <div class="mx-auto my-10 w-full px-4 md:px-8 lg:w-11/12 xl:w-4/5">
+      <div class="w-full mb-2 sm:mb-3 border-4 border-double bc bg">
+        <header class="flex flex-wrap px-2 bg-white">
+          <div class="flex-initial ml-auto">
+            <span class="type text-xxs sm:text-xs text-right dc">
+              <a class="link" href="https://x.com/alittleyareli">twitter</a> /
+              <a class="link" href="https://backloggd.com/u/alittleyareli/">backloggd</a> /
+              <a class="link" href="https://myanimelist.net/profile/alittleyareli">myanimelist</a> /
+              <a class="link" href="https://alittleyareli.substack.com">substack</a>
+            </span>
+          </div>
+        </header>
+    
+        <img class="w-full max-h-32 md:max-h-40 object-cover brightness-50" src="/content/images/banner.jpg" />
+        <div class="w-full bg-i">
+          <nav class="flex flex-wrap h-full">
+            <div class="flex-initial px-3 pt-1 pb-0.5">
+              <h1 class="font-bold uppercase fg-i">
+                <a class="link" href="/">Home{% if page.url == "/" %}*{% endif %}</a>
+              </h1>
+            </div>
+            <div class="flex-initial px-3 pt-1 pb-0.5">
+              <h1 class="font-bold uppercase fg-i">
+                <a class="link" href="/pages/archive/">Archive{% if page.url == "/pages/archive/" %}*{% endif %}</a>
+              </h1>
+            </div>
+            <div class="flex-initial px-3 pt-1 pb-0.5">
+              <h1 class="font-bold uppercase fg-i">
+                <a class="link" href="/pages/garden/">Garden{% if page.url == "/pages/garden/" %}*{% endif %}</a>
+              </h1>
+            </div>
+            <div class="flex-initial px-3 pt-1 pb-0.5">
+              <h1 class="font-bold uppercase fg-i">
+                <a class="link" href="/feed.xml">RSS</a>
+              </h1>
+            </div>
+            <div class="flex-initial ml-auto px-3 pt-1.5">
+              <button type="button" data-theme-toggle>
+                <img class="theme-icon" src="//img.icons8.com/?size=20&id=60002&format=png&color=ffffff" />
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      {{ content }}
+
+    </div>
+  </main>
+
+  <script src="/content/scripts/main.js"></script>
+</body>
+</html>

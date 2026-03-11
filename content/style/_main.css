@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@import url("/content/style/content.css");
+@import url("/content/style/fills.css");
+@import url("/content/style/marquee.css");
+@import url("/content/style/variables.css");
+
+@import url("/content/style/archive.css");
+
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+html, body {
+  height: 100vh;
+  cursor: var(--cursor-default) 16 0, default;
+
+  opacity: 0;
+  animation: fadeIn ease var(--page-fade-speed);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+body {
+  background-color: var(--color-2);
+  background-image:  radial-gradient(var(--color-1) 0.75px, transparent 0.75px), radial-gradient(var(--color-1) 0.75px, var(--color-2) 0.75px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+a, button, svg {
+  cursor: var(--cursor-pointer) 16 0, pointer !important;
+}
+
+a.link {
+  filter: brightness(95%);
+  text-decoration: underline dashed;
+}
+
+button:hover, a.link:hover {
+  filter: brightness(125%);
+  text-decoration: underline wavy;
+}
+
+a > img:hover {
+  filter: opacity(70%) brightness(105%);
+}
+
+@media (min-width: 768px) {
+  #search-container {
+    height: 22.75rem;
+    min-height: 22.75rem;
+  }
+}
