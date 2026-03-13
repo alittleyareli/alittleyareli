@@ -1,8 +1,8 @@
 import * as cheerio from "cheerio";
 import * as pagefind from "pagefind";
 
-import { feedPlugin } from "@11ty/eleventy-plugin-rss";
-import { inspect } from 'node:util';
+import { inspect } from "node:util";
+import pluginRss from "@11ty/eleventy-plugin-rss";
 
 const output = "_dist";
 const statics = "{svg,webp,png,jpg,jpeg,gif}";
@@ -18,6 +18,14 @@ export default async function(eleventyConfig) {
   eleventyConfig.addFilter("inspect", (obj) => {
     return inspect(obj, {sorted: true});
   });
+
+	eleventyConfig.addFilter("now", (obj) => {
+		return Date();
+	});
+
+	eleventyConfig.addFilter("contentAsXHTML", (obj) => {
+		return obj.replace(/(<img\b[^<>]*[^<>\/])>/ig, "$1 />");
+	});
 
   eleventyConfig.addCollection("featuredPosts", function(collectionsAPI) {
     return collectionsAPI.getAllSorted().filter((item) => {
@@ -49,23 +57,28 @@ export default async function(eleventyConfig) {
 		return content;
 	});
 
-	eleventyConfig.addPlugin(feedPlugin, {
-		type: "rss",
-		outputPath: "/feed.xml",
-		collection: {
-			name: "post",
-			limit: 15,
-		},
-		metadata: {
-			language: "en",
-			title: "yareli's press",
-			subtitle: "occasional essays and letters on video games, manga, personal, et al.",
-			base: "https://yareli.nekoweb.org",
-			author: {
-				name: "yareli"
-			}
-		}
-	});
+	eleventyConfig.addPlugin(pluginRss);
+
+	eleventyConfig.addFilter("dateToRfc3339", pluginRss.dateToRfc3339);
+	eleventyConfig.addFilter("dateToRfc822", pluginRss.dateToRfc822);
+
+	// eleventyConfig.addPlugin(feedPlugin, {
+	// 	type: "rss",
+	// 	outputPath: "/feed.xml",
+	// 	collection: {
+	// 		name: "post",
+	// 		limit: 0,
+	// 	},
+	// 	metadata: {
+	// 		language: "en",
+	// 		title: "yareli's press",
+	// 		subtitle: "occasional essays and letters on video games, manga, personal, et al.",
+	// 		base: "https://yareli.nekoweb.org",
+	// 		author: {
+	// 			name: "yareli"
+	// 		}
+	// 	}
+	// });
 
   eleventyConfig.on('eleventy.after', async () => {
 		const { index } = await pagefind.createIndex();
