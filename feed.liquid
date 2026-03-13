@@ -24,11 +24,11 @@ metadata:
     {% for post in collections.post | reverse %}
     <item>
       <title>{{ post.data.title }}</title>
-      <link>{{ absolutePostUrl }}</link>
+      <link>{{ metadata.base }}{{ post.page.url }}</link>
       <description>{{ post.content | renderTransforms: post.data.page, metadata.base | contentAsXHTML }}</description>
       <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
       <dc:creator>{{ metadata.author.name }}</dc:creator>
-      <guid>{{ absolutePostUrl }}</guid>
+      <guid>{{ metadata.base }}{{ post.page.url }}</guid>
     </item>
     {% endfor %}
   </channel>
