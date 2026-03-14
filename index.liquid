@@ -3,7 +3,7 @@ title: yareli's press
 layout: main
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-2 sm:gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-2">
   <div class="col-auto sm:col-span-2 order-1 overflow-hidden">
     <div class="w-full p-2 border bc bg">
       <h2 class="text-sm text-center font-bold uppercase mb-0.5 mx-auto">yareli's press</h2>
@@ -19,18 +19,26 @@ layout: main
       </div>
     </div>
   </div>
-  <div class="col-auto sm:col-span-4 order-2 sm:order-3 md:order-2 p-2 border bc bg-i">
-    <h1 class="text-sm font-bold uppercase mb-4 fg-i">Featured Post</h1>
+  <div class="col-auto sm:col-span-4 order-2 sm:order-3 md:order-2 p-2 border bc bg">
+    <div class="flex flex-col justify-center h-full">
+      <div class="flex-none">
+        <h1 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-4">Featured Post</h1>
+      </div>
 
-    {% assign featured = collections.featuredPosts | first %}
-    <span class="type text-xs fg-i">{{ featured.date | date: "%b %d, %Y" }}</span>
-    <h1 class="text-lg sm:text-xl font-bold fg-i mb-4">{{ featured.data.title }}</h1>
+      <div class="flex-1">
+        {% assign featured = collections.featuredPosts | first %}
+        <span class="type text-xs fg">{{ featured.date | date: "%b %d, %Y" }}</span>
+        <h1 class="text-lg sm:text-xl font-bold fg mb-2 sm:mb-4">{{ featured.data.title }}</h1>
 
-    <div id="content" class="fg-i strip-content">
-      {{ featured.content | truncatewords: 95 }}
+        <div id="content" class="strip-content">
+          {{ featured.content | truncatewords: 115 }}
+        </div>
+      </div>
+
+      <div class="flex-none mt-2">
+        <a class="link text-sm type font-bold uppercase" href="{{ featured.url }}">Read Full Post &gt;&gt;</a>
+      </div>
     </div>
-
-    <a class="link text-sm type font-bold uppercase fg-i" href="{{ featured.url  }}">Read Full Post &gt;&gt;</a>
 
   </div>
   <div class="col-auto sm:col-span-2 order-3 sm:order-2 md:order-3 p-1 sm:p-2 border bc bg">

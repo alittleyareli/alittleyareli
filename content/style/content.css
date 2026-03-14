@@ -88,10 +88,14 @@
   margin: 1rem 0 0.5rem 0;
 }
 
-#content.strip-content img {
+#content.strip-content p:has(> img) {
   display: none;
 }
 
-#content.strip-content img + em {
+#content.strip-content p:has(> img + em) {
   display: none;
+}
+
+#content.strip-content p:last-of-type {
+  margin-bottom: 0;
 }
