@@ -28,7 +28,7 @@ metadata:
       <description>{{ post.content | renderTransforms: post.data.page, metadata.base | contentAsXHTML }}</description>
       <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
       <dc:creator>{{ metadata.author.name }}</dc:creator>
-      <guid>{{ metadata.base }}{{ post.page.url }}</guid>
+      <guid>{{ post.page.url }}</guid>
     </item>
     {% endfor %}
   </channel>
