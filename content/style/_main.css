@@ -1,10 +1,9 @@
 @charset "UTF-8";
+@import url("/content/style/archive.css");
 @import url("/content/style/content.css");
 @import url("/content/style/fills.css");
 @import url("/content/style/marquee.css");
 @import url("/content/style/variables.css");
-
-@import url("/content/style/archive.css");
 
 
 @keyframes fadeIn {
@@ -47,9 +46,23 @@ a > img:hover {
   filter: opacity(70%) brightness(105%);
 }
 
+svg.icon {
+  width: 26px;
+  height: 26px;
+  color: var(--color-2);
+  fill: var(--color-2);
+}
+
 @media (min-width: 768px) {
   #search-container {
     height: 22.75rem;
     min-height: 22.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  svg.icon {
+    width: 18px;
+    height: 18px;
   }
 }

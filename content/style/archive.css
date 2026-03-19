@@ -27,9 +27,11 @@
 }
 
 .pagefind-ui__result-link {
+  filter: brightness(95%);
   text-decoration: underline dashed !important;
 }
 
 .pagefind-ui__result-link:hover {
+  filter: brightness(125%);
   text-decoration: underline wavy !important;
 }
