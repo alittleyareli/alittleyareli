@@ -17,7 +17,7 @@ layout: main
 
   <div class="col-span-1">
     <div class="w-full h-full p-2 border bc bg">
-      {% render "_includes/posts.liquid", posts: collections.post, limit: 5, url: page.url %}
+      {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
     </div>
   </div>
 
@@ -29,8 +29,11 @@ layout: main
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-flow-row w-full gap-x-2 gap-y-4">
         {% for post in posts %}
           <div class="col-auto">
-            <div class="text-xxs type uppercase">{{ post.date | date: "%Y-%m-%d"  }}</div>
-            <a class="link fg" href="{{ post.url }}">{{ post.data.title  }}</a>
+            <div class="text-xxs type uppercase">{{ post.date | date: "%Y-%m-%d" }}</div>
+            <div class="mb-1">
+              <a class="link font-medium fg" href="{{ post.url }}">{{ post.data.title }}</a>
+            </div>
+            <div class="text-xs type">{{ post.data.subtitle }}</div>
           </div>
         {% endfor %}
       </div>
