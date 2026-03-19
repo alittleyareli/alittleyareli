@@ -11,7 +11,7 @@ layout: main
     </div>
   </div>
 
-  <div class="col-span-1">
+  <div class="col-span-1 hidden sm:block">
     <div class="w-full p-2 border bc bg">
       {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
     </div>

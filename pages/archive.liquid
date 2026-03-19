@@ -6,16 +6,15 @@ layout: main
 <script src="/content/pagefind/pagefind-ui.js"></script>
 
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-  <div class="col-span-1 sm:col-span-3">
+  <div class="col-span-1 sm:col-span-3 h-full">
     <div id="search-container" class="w-full h-full p-2 border bc bg overflow-y-scroll">
       <h3 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-4">Search the Archive</h3>
-
       <div id="search" class="w-full"></div>
       <script src="/content/scripts/mount.js" defer></script>
     </div>
   </div>
 
-  <div class="col-span-1">
+  <div class="col-span-1 hidden sm:block">
     <div class="w-full h-full p-2 border bc bg">
       {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
     </div>
