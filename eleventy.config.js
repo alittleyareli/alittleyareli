@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import * as pagefind from "pagefind";
 
 import { inspect } from "node:util";
+import { EleventyRenderPlugin } from "@11ty/eleventy";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
 const output = "_dist";
@@ -14,6 +15,9 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("content/");
 
 	eleventyConfig.addPassthroughCopy(`posts/**/*.${statics}`, {mode: "html-relative"});
+
+	eleventyConfig.ignores.add("README.md");
+	eleventyConfig.ignores.add("posts/about.md");
 
   eleventyConfig.addFilter("inspect", (obj) => {
     return inspect(obj, {sorted: true});
@@ -68,6 +72,7 @@ export default async function(eleventyConfig) {
 	});
 
 	eleventyConfig.addPlugin(pluginRss);
+	eleventyConfig.addPlugin(EleventyRenderPlugin);
 
 	eleventyConfig.addFilter("dateToRfc3339", pluginRss.dateToRfc3339);
 	eleventyConfig.addFilter("dateToRfc822", pluginRss.dateToRfc822);
