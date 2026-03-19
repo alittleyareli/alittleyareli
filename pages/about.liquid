@@ -2,4 +2,18 @@
 title: about • yareli's press
 layout: main
 ---
-  
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+  <div class="col-span-1 sm:col-span-3">
+    <div class="w-full h-full p-2 border bc bg">
+      <h3 class="w-full text-sm font-bold uppercase fg-i bg-i p-1">About Yareli's Press</h3>
+
+      <div id="content">{% renderFile "posts/about.md" %}</div>
+    </div>
+  </div>
+
+  <div class="col-span-1">
+    <div class="w-full p-2 border bc bg">
+      {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
+    </div>
+  </div>
+</div>
