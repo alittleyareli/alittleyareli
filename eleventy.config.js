@@ -23,6 +23,16 @@ export default async function(eleventyConfig) {
 		return Date();
 	});
 
+	eleventyConfig.addFilter("everyNth", (obj, s, n) => {
+			const res = [];
+
+			for (let i = s; i < obj.length; i += n) {
+				res.push(obj[i]);
+			}
+
+			return res;
+	});
+
 	eleventyConfig.addFilter("contentAsXHTML", (obj) => {
 		return obj.replace(/(<img\b[^<>]*[^<>\/])>/ig, "$1 />");
 	});
