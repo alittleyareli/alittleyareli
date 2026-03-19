@@ -1,7 +1,3 @@
----
-title: blank title
----
-
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -12,7 +8,7 @@ title: blank title
   <title>{{ title }}</title>
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link href="/content/style/_main.css" rel="stylesheet" type="text/css" />
+  <link href="/content/style/_main.css?v=2026.03.18" rel="stylesheet" type="text/css" />
   <link href="/content/pagefind/pagefind-ui.css" rel="stylesheet" type="text/css" />
 
   <link href="/content/style/tailwind.css" rel="stylesheet" type="text/css" />
@@ -49,11 +45,16 @@ title: blank title
     <div class="mx-auto my-10 w-full px-4 md:px-8 lg:w-11/12 xl:w-4/5">
       <div class="w-full mb-2 sm:mb-3 border-4 border-double bc bg">
         <header class="flex flex-wrap px-2 bg-white">
+          <div class="flex-none pt-1.5">
+            <button type="button" data-theme-toggle>
+              <img class="theme-icon" src="//img.icons8.com/?size=20&id=60002&format=png&color=000000" />
+            </button>
+          </div>
+
           <div class="flex-initial ml-auto">
             <span class="type text-xxs sm:text-xs text-right dc">
               <a class="link" href="https://x.com/alittleyareli">twitter</a> /
               <a class="link" href="https://backloggd.com/u/alittleyareli/">backloggd</a> /
-              <a class="link" href="https://myanimelist.net/profile/alittleyareli">myanimelist</a> /
               <a class="link" href="https://alittleyareli.substack.com">substack</a>
             </span>
           </div>
@@ -63,39 +64,37 @@ title: blank title
         <div class="w-full bg-i">
           <nav class="flex flex-wrap h-full">
             <div class="flex-initial px-3 pt-1 pb-0.5">
-              <h1 class="font-bold uppercase fg-i">
+              <h1 class="text-sm sm:text-base font-bold uppercase fg-i">
                 <a class="link" href="/">Home{% if page.url == "/" %}*{% endif %}</a>
               </h1>
             </div>
             <div class="flex-initial px-3 pt-1 pb-0.5">
-              <h1 class="font-bold uppercase fg-i">
+              <h1 class="text-sm sm:text-base font-bold uppercase fg-i">
                 <a class="link" href="/pages/archive/">Archive{% if page.url == "/pages/archive/" %}*{% endif %}</a>
               </h1>
             </div>
             <div class="flex-initial px-3 pt-1 pb-0.5">
-              <h1 class="font-bold uppercase fg-i">
+              <h1 class="text-sm sm:text-base font-bold uppercase fg-i">
                 <a class="link" href="/pages/garden/">Garden{% if page.url == "/pages/garden/" %}*{% endif %}</a>
               </h1>
             </div>
             <div class="flex-initial px-3 pt-1 pb-0.5">
-              <h1 class="font-bold uppercase fg-i">
-                <a class="link" href="/feed.xml">RSS</a>
+              <h1 class="text-sm sm:text-base font-bold uppercase fg-i">
+                <a class="link" href="/pages/about/">About{% if page.url == "/pages/about/" %}*{% endif %}</a>
               </h1>
             </div>
-            <div class="flex-initial ml-auto px-3 pt-1.5">
-              <button type="button" data-theme-toggle>
-                <img class="theme-icon" src="//img.icons8.com/?size=20&id=60002&format=png&color=ffffff" />
-              </button>
+            <div class="flex-none ml-auto pr-2 pt-1 sm:pt-0.5">
+              <a class="link" href="/feed.xml">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
+                  <path fill-rule="evenodd" d="M3.75 4.5a.75.75 0 0 1 .75-.75h.75c8.284 0 15 6.716 15 15v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75C18 11.708 12.292 6 5.25 6H4.5a.75.75 0 0 1-.75-.75V4.5Zm0 6.75a.75.75 0 0 1 .75-.75h.75a8.25 8.25 0 0 1 8.25 8.25v.75a.75.75 0 0 1-.75.75H12a.75.75 0 0 1-.75-.75v-.75a6 6 0 0 0-6-6H4.5a.75.75 0 0 1-.75-.75v-.75Zm0 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clip-rule="evenodd" />
+                </svg>
+              </a>
             </div>
           </nav>
         </div>
       </div>
 
       {{ content }}
-
-      <div class="w-full text-center text-xs mt-4">
-        <a class="link" href="https://github.com/alittleyareli/alittleyareli">View Website Source</a>
-      </div>
     </div>
   </main>
 
