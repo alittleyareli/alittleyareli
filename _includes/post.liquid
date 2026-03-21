@@ -1,13 +1,28 @@
----
-layout: main
----
+{% layout "main" %}
 
+{% block title %}{{ title }} • yareli's press{% endblock %}
+
+{% block meta %}
+  <meta property="og:title" content="{{ title }} • yareli's press" />
+  <meta property="og:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
+  <meta property="og:image" content="{{ metadata.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
+  <meta property="og:description" content="{{ content | strip_html | truncatewords: 45 }}" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="https://yareli.nekoweb.org">
+  <meta property="twitter:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
+  <meta name="twitter:title" content="{{ title }} • yareli's press">
+  <meta name="twitter:image" content="{{ metadata.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
+  <meta name="twitter:description" content="{{ content | strip_html | truncatewords: 45 }}">
+{% endblock %}
+
+{% block content %}
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4">
   <div class="col-auto sm:col-span-3">
     <div class="w-full p-2 sm:p-4 border bc bg">
       <span class="type text-sm">
         {{ date | date: "%b %d, %Y" }}
-        {% if mirror  %}&nbsp;|&nbsp;<a class="link" href="{{ mirror }}" rel="_blank">View on Backloggd</a>{% endif %}
+        {% if flags.mirror %}&nbsp;|&nbsp;<a class="link" href="{{ flags.mirror }}" rel="_blank">Alternate View</a>{% endif %}
       </span>
       <br><br>
       <h1 class="text-lg sm:text-3xl font-bold" data-pagefind-meta="title">{{ title }}</h1>
@@ -21,7 +36,8 @@ layout: main
   </div>
   <div class="col-auto">
     <div class="w-full p-2 border bc bg" data-pagefind-ignore>
-      {% render "posts.liquid" with collections.post as posts %}
+      {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
     </div>
   </div>
 </div>
+{% endblock %}
