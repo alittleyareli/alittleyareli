@@ -27,6 +27,10 @@ export default async function(eleventyConfig) {
 		return Date();
 	});
 
+	eleventyConfig.addFilter("default", (obj, value) => {
+		return obj ? obj : value;
+	});
+
 	eleventyConfig.addFilter("everyNth", (obj, s, n) => {
 			const res = [];
 
@@ -43,7 +47,9 @@ export default async function(eleventyConfig) {
 
   eleventyConfig.addCollection("featuredPosts", function(collectionsAPI) {
     return collectionsAPI.getAllSorted().filter((item) => {
-      return item.data.featured === true;
+			if (item.data.flags) {
+      	return item.data.flags.featured === true;
+			};
     });
   });
 
