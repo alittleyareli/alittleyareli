@@ -6,14 +6,15 @@
   <meta property="og:title" content="{{ title }} • yareli's press" />
   <meta property="og:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
   <meta property="og:image" content="{{ metadata.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
-  <meta property="og:description" content="{{ content | strip_html | truncatewords: 45 }}" />
+  <meta property="og:description" content="{{ content | strip_html | truncatewords: 20 }}" />
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="https://yareli.nekoweb.org">
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@alittleyareli">
+  <meta property="twitter:domain" content="yareli.nekoweb.org">
   <meta property="twitter:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
-  <meta name="twitter:title" content="{{ title }} • yareli's press">
-  <meta name="twitter:image" content="{{ metadata.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
-  <meta name="twitter:description" content="{{ content | strip_html | truncatewords: 45 }}">
+  <meta property="twitter:title" content="{{ title }} • yareli's press">
+  <meta property="twitter:image" content="{{ metadata.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
+  <meta property="twitter:description" content="{{ content | strip_html | truncatewords: 20 }}">
 {% endblock %}
 
 {% block content %}

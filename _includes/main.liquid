@@ -12,12 +12,25 @@
   <link href="/content/pagefind/pagefind-ui.css" rel="stylesheet" type="text/css" />
 
   <link href="/content/style/tailwind.css" rel="stylesheet" type="text/css" />
-  
+
   <meta property="og:locale" content="en" />
   <meta property="og:site_name" content="yareli's press" />
   <meta property="og:type" content="website" />
-  <meta property="og:logo" content="/content/images/icon.jpg" />
-  {% block meta %}{% endblock %}
+  <meta property="og:logo" content="{{ "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
+  {% block meta %}
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
+  <meta property="og:image" content="{{ "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
+  <meta property="og:description" content="occasional essays and letters on video games, manga, personal, et al." />
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@alittleyareli">
+  <meta property="twitter:domain" content="yareli.nekoweb.org">
+  <meta property="twitter:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
+  <meta property="twitter:title" content="{{ title }}">
+  <meta property="twitter:image" content="{{ "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
+  <meta property="twitter:description" content="occasional essays and letters on video games, manga, personal, et al.">
+  {% endblock %}
 </head>
 
 <body>
