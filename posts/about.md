@@ -1,6 +1,6 @@
 ### hi
 
-i'm yareli, 20 year-old graphic design undergradute from the U.S. this website is where i publish all my writing on video games and manga, and anything else i'm interested in. thanks for stopping by.
+i'm yareli, 20 year-old graphic design undergradute from the U.S. this website is where i publish all my writing on video games and manga, or anything else i'm interested in. thanks for stopping by.
 
 ### subscribing
 
