@@ -8,7 +8,7 @@
   <meta property="og:image" content="{{ metadata.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
   <meta property="og:description" content="{{ content | strip_html | truncatewords: 20 }}" />
 
-  <meta property="twitter:card" content="summary">
+  <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:site" content="@alittleyareli">
   <meta property="twitter:domain" content="yareli.nekoweb.org">
   <meta property="twitter:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
@@ -21,11 +21,10 @@
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4">
   <div class="col-auto sm:col-span-3">
     <div class="w-full p-2 sm:p-4 border bc bg">
-      <span class="type text-sm">
+      <div class="w-full type text-sm mb-4">
         {{ date | date: "%b %d, %Y" }}
         {% if flags.mirror %}&nbsp;|&nbsp;<a class="link" href="{{ flags.mirror }}" rel="_blank">Alternate View</a>{% endif %}
-      </span>
-      <br><br>
+      </div>
       <h1 class="text-lg sm:text-3xl font-bold" data-pagefind-meta="title">{{ title }}</h1>
       <h3 class="text-base sm:text-md font-light italic">{{ subtitle }}</h3>
       <hr class="border border-dotted bc my-2 sm:my-4">
