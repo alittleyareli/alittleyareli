@@ -31,9 +31,9 @@
 }
 
 #content img {
-  width: initial;
+  width: 97%;
   margin: 0 auto;
-  filter: drop-shadow(6px 6px var(--color-1));
+  filter: drop-shadow(4px 4px var(--color-1));
 }
 
 @media (min-width: 768px) {
