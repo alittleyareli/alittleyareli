@@ -1,5 +1,5 @@
 ---
-permalink: /feed.xml
+permalink: /posts.xml
 eleventyExcludeFromCollections: true
 
 metadata:
@@ -12,7 +12,7 @@ metadata:
     email: ""
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xml:base="{{ metadata.base | addPathPrefixToFullUrl }}" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>{{ metadata.title }}</title>
     <link>{{ metadata.base | addPathPrefixToFullUrl }}</link>
@@ -22,14 +22,14 @@ metadata:
     <copyright>Copyright 2025 {{ metadata.author.name }}</copyright>
     <lastBuildDate>{{ "now" | now | dateToRfc822 }}</lastBuildDate>
 
-    {% for post in collections.post | reverse %}
+    {% for post in collections.post reversed %}
     <item>
       <title>{{ post.data.title }}</title>
-      <link>{{ metadata.base }}{{ post.page.url }}</link>
-      <description>{{ post.content | renderTransforms: post.data.page, metadata.base | contentAsXHTML }}</description>
+      <description>{{ post.data.subtitle }}</description>
       <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
       <author>{{ metadata.author.name }}</author>
-      <guid>{{ post.page.url }}</guid>
+      <link>{{ metadata.base }}{{ post.page.url }}</link>
+      <guid>{{ metadata.base }}{{ post.page.url }}</guid>
     </item>
     {% endfor %}
   </channel>
