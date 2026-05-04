@@ -4,9 +4,9 @@ i'm yareli, 20 year-old graphic design undergradute from the U.S. this website i
 
 ### subscribing
 
-i think the internet at large desperately needs to decouple itself from algorithms and recommendation feeds. to that end, if you'd like to keep up with new posts from this blog (thank you!), consider pasting the link to [/feed.xml](/feed.xml) into an RSS reader of your choice. it should automatically populate with previous posts, and send notications when new ones go live.
+i think the internet at large desperately needs to decouple itself from algorithms and recommendation feeds. to that end, if you'd like to keep up with new posts from this blog (thank you!), consider pasting the link to [/posts.xml](/posts.xml) into an RSS reader of your choice. it should automatically populate with previous posts, and send notications when new ones go live.
 
-the full RSS feed link looks like this: `https://yareli.nekoweb.org/feed.xml`
+the full RSS feed link looks like this: `https://yareli.nekoweb.org/posts.xml`
 
 ### about the stack
 
