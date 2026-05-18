@@ -47,8 +47,8 @@ export default async function(eleventyConfig) {
 
   eleventyConfig.addCollection("featuredPosts", function(collectionsAPI) {
     return collectionsAPI.getAllSorted().filter((item) => {
-			if (item.data.flags) {
-      	return item.data.flags.featured === true;
+			if (item.data.meta) {
+      	return item.data.meta.featured === true;
 			};
     });
   });
