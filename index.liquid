@@ -4,28 +4,32 @@ layout: main
 ---
 
 <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-2">
-  <div class="col-auto sm:col-span-2 order-1 flex flex-col flex-wrap">
+  <div class="col-auto sm:col-span-2 flex flex-col flex-wrap">
     <div class="flex-1 w-full h-full p-2 border bc bg sm:mb-2">
       <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">yareli's press</h2>
-      <img class="w-16 sm:w-1/4 float-left mr-2 rounded-lg mb-2 sm:mb-0" src="/content/images/icon.jpg" />
-      <p class="type text-sm text-left">
-        hi... welcome to my personal blog and website. i write about games, manga,
-        personal, et. al. the site is mobile-friendly but is best experienced on
-        desktop. please enjoy your stay, and thanks for stopping by.
+      <img class="w-16 sm:w-1/4 float-left mr-2 rounded-lg mb-2 sm:mb-0" src="/content/images/icon.jpg">
+      <p class="type text-sm text-justify">
+        hello... welcome to my personal blog and website. i write about video games,
+        manga, personal, et. al. the site is mobile-friendly but is best experienced
+        on desktop! please enjoy your stay, and thanks for stopping by.
+        <br><br>
+        <b><!--# views --></b> total site visits!
       </p>
     </div>
 
     <div class="hidden sm:block flex-1 w-full h-full p-2 border bc bg">
-      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">READ ME</h2>
-      <p class="type text-sm text-left">
+      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">read me</h2>
+      <p class="type text-sm text-justify">
         <b>yareli.</b> 21yo, any/all, black. graphic design undergraduate. depending
         on where u meet me online, i also go by frissyn, berrymyre, and alairaisover.
         <br><br>
         see more on the <a class="link type fg" href="/pages/about/">/about</a> page.
+        <br>
+        follow the site via <a class="link type fg" href="/posts.xml">/posts.xml</a> rss feed.
       </p>
     </div>
   </div>
-  <div class="col-auto sm:col-span-4 order-2 sm:order-3 md:order-2 p-2 border bc bg">
+  <div class="col-auto sm:col-span-6 p-2 border bc bg">
     <div class="flex flex-col justify-center h-full">
       <div class="flex-none">
         <h1 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">Featured Post</h1>
@@ -33,29 +37,65 @@ layout: main
 
       <div class="flex-1">
         {% assign featured = collections.featuredPosts | first %}
-        <span class="type text-xs fg">{{ featured.date | date: "%b %d, %Y" }}</span>
-        <h1 class="text-lg sm:text-xl font-bold fg mb-2 sm:mb-2">{{ featured.data.title }}</h1>
+        <img class="w-5/12 hidden sm:block float-left mr-3 ft-img" src="{{ featured.url }}{{ featured.data.meta.image }}" />
+        <p class="type text-xs fg mb-2">{{ featured.date | date: "%b %d, %Y" }}</p>
+        <h1 class="text-lg sm:text-xl font-bold fg ">{{ featured.data.title }}</h1>
+        <p class="type text-xs fg mb-2 sm:mb-2"><i>{{ featured.data.subtitle }}</i></p>
+        <img class="w-5/12 block sm:hidden w-11/12 mx-auto mb-2 ft-img" src="{{ featured.url }}{{ featured.data.meta.image }}" />
 
-        <div id="content" class="strip-content">
-          {{ featured.content | truncatewords: 105 | replace: "<br>", " " }}
+        <div id="content" class="text-justify strip-content">
+          {{ featured.content | truncatewords: 152 | replace: "<br>", " " }}
         </div>
       </div>
 
       <div class="flex-none mt-2">
-        <a class="link text-sm type font-bold uppercase" href="{{ featured.url }}">Read Full Post &gt;&gt;</a>
+        <a class="link text-sm type font-black uppercase" href="{{ featured.url }}">Read Full Post &gt;&gt;</a>
       </div>
     </div>
   </div>
-  <div class="col-auto sm:col-span-2 order-3 sm:order-2 md:order-3 p-2 border bc bg">
-    {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
+  <div class="col-auto sm:col-span-6 p-2 border bc bg">
+    <div class="flex flex-col justify-center h-full">
+      <div class="flex-none">
+        <h1 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">Latest Posts</h1>
+      </div>
+
+      {%- assign n = 0 -%}
+      {%- assign posts = collections.post | reverse -%}
+      <div class="flex-1 pr-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 grid-flow-row w-full pb-1 gap-4 w-full">
+        {% for i in (0..6) %}
+          {%- if posts[n].data.meta.featured %}{% assign n = n | plus: 1 %}{% assign i = i | minus: 1 %}{% continue %}{% endif -%}
+          <div class="col-auto">
+            <div class="flex flex-row w-full gap-1">
+              <div class="flex-1">
+                <div class="flex flex-col flex-wrap justify-center w-full h-full">
+                  <div class="flex-none">
+                    <p class="type text-xs fg mb-6">{{ posts[n].date | date: "%b %d, %Y" }}</p>
+                    <h1 class="text-md font-bold fg"><a  class="link" href="{{ posts[n].url }}">{{ posts[n].data.title }}</a></h1>
+                    <p class="type text-xs fg mb-2 sm:mb-2"><i>{{ posts[n].data.subtitle }}</i></p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-none">
+                <img class="w-40 h-40 object-cover ft-img" src="{{ posts[n].url }}{{ posts[n].data.meta.image }}" />
+              </div>
+            </div>
+          </div>
+          {% assign n = n | plus: 1 -%}
+        {%- endfor -%}
+
+        <a class="link text-sm type font-black uppercase" href="/pages/archive">View Full Archive &gt;&gt;</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-auto order-last sm:hidden p-2 border bc bg">
-    <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">READ ME</h2>
-    <p class="type text-sm text-left">
-      <b>yareli.</b> 21yo, any/all, black. graphic design undergraduate. depending
-      on where u meet me online, i also go by frissyn, berrymyre, and alairaisover.
-      <br><br>
-      see more on the <a class="link type fg" href="/pages/about/">/about</a> page.
-    </p>
+  <div class="col-auto sm:col-span-2 flex flex-col flex-wrap">
+    <div class="flex-none w-full sm:h-1/3 p-2 border bc bg">
+      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">miscellaneous</h2>
+      <div class="mx-auto">
+        <!--# follow -->
+      </div>
+      <p class="text-xs">site last updated: <!--# flastmod file="index.html" fmt="%A, %B %dd, %Y at %hh:%mm %p" timezone="America/New_York" --> (UTC-05)</p>
+    </div>
   </div>
 </div>

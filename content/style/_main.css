@@ -46,6 +46,10 @@ a > img:hover {
   filter: opacity(70%) brightness(105%);
 }
 
+.ft-img {
+  filter: drop-shadow(4px 4px var(--color-1));
+}
+
 svg.icon {
   width: 26px;
   height: 26px;

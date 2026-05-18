@@ -23,7 +23,7 @@
     <div class="w-full p-2 sm:p-4 border bc bg">
       <div class="w-full type text-sm mb-4">
         {{ date | date: "%b %d, %Y" }}
-        {% if flags.mirror %}&nbsp;|&nbsp;<a class="link" href="{{ flags.mirror }}" rel="_blank">Alternate View</a>{% endif %}
+        {% if meta.mirror %}&nbsp;|&nbsp;<a class="link" href="{{ meta.mirror }}" rel="_blank">Alternate View</a>{% endif %}
       </div>
       <h1 class="text-lg sm:text-3xl font-bold" data-pagefind-meta="title">{{ title }}</h1>
       <h3 class="text-base sm:text-md font-light italic">{{ subtitle }}</h3>
