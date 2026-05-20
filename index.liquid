@@ -25,7 +25,7 @@ layout: main
         <br><br>
         see more on the <a class="link type fg" href="/pages/about/">/about</a> page.
         <br>
-        follow the site via <a class="link type fg" href="/posts.xml">/posts.xml</a> rss feed.
+        follow the site via <a class="link type fg" href="/posts.xml">/posts.xml</a> rss reader.
       </p>
     </div>
   </div>
@@ -66,18 +66,20 @@ layout: main
         {% for i in (0..6) %}
           {%- if posts[n].data.meta.featured %}{% assign n = n | plus: 1 %}{% assign i = i | minus: 1 %}{% continue %}{% endif -%}
           <div class="col-auto">
-            <div class="flex flex-row w-full gap-1">
+            <div class="flex flex-row w-full gap-x-2 sm:gap-x-3">
+              <div class="flex-none">
+                <img class="w-36 h-36 object-cover ft-img" src="{{ posts[n].url }}{{ posts[n].data.meta.image }}" />
+              </div>
               <div class="flex-1">
                 <div class="flex flex-col flex-wrap justify-center w-full h-full">
-                  <div class="flex-none">
-                    <p class="type text-xs fg mb-6">{{ posts[n].date | date: "%b %d, %Y" }}</p>
+                  <div class="flex-auto">
+                    <p class="type text-xs fg mt-4">{{ posts[n].date | date: "%b %d, %Y" }}</p>
+                  </div>
+                  <div class="flex-auto">
                     <h1 class="text-md font-bold fg"><a  class="link" href="{{ posts[n].url }}">{{ posts[n].data.title }}</a></h1>
-                    <p class="type text-xs fg mb-2 sm:mb-2"><i>{{ posts[n].data.subtitle }}</i></p>
+                    <p class="type text-xs fg"><i>{{ posts[n].data.subtitle }}</i></p>
                   </div>
                 </div>
-              </div>
-              <div class="flex-none">
-                <img class="w-40 h-40 object-cover ft-img" src="{{ posts[n].url }}{{ posts[n].data.meta.image }}" />
               </div>
             </div>
           </div>
@@ -91,11 +93,12 @@ layout: main
   </div>
   <div class="col-auto sm:col-span-2 flex flex-col flex-wrap">
     <div class="flex-none w-full sm:h-1/3 p-2 border bc bg">
-      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">miscellaneous</h2>
-      <div class="mx-auto">
-        <!--# follow -->
-      </div>
-      <p class="text-xs">site last updated: <!--# flastmod file="index.html" fmt="%A, %B %dd, %Y at %hh:%mm %p" timezone="America/New_York" --> (UTC-05)</p>
+      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">site map</h2>
+      <ul class="list-disc list-inside text-xs">
+          <li>total site updates: <b><!--# updates format="true" --></b></li>
+          <li>last site update: <b><!--# flastmod file="index.html" fmt="%b %d, %Y @ %hh:%mm %p" timezone="America/New_York" --></b></li>
+          <li>view site source here: <b><a class="link" href="https://github.com/alittleyareli/alittleyareli">github</a></b></li>
+      </ul>
     </div>
   </div>
 </div>
