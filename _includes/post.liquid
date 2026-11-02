@@ -1,11 +1,11 @@
 {% layout "main" %}
 
-{% block title %}{{ title }} • yareli's press{% endblock %}
+{%- block title -%}{{ title }} • yareli's press{%- endblock -%}
 
 {% block meta %}
   <meta property="og:title" content="{{ title }} • yareli's press" />
   <meta property="og:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
-  <meta property="og:image" content="{{ meta.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}" />
+  <meta property="og:image" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}cover.jpeg" />
   <meta property="og:description" content="{{ subtitle | strip_html | truncate: 160 }}" />
 
   <meta property="twitter:card" content="summary_large_image">
@@ -13,30 +13,34 @@
   <meta property="twitter:domain" content="yareli.nekoweb.org">
   <meta property="twitter:url" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
   <meta property="twitter:title" content="{{ title }} • yareli's press">
-  <meta property="twitter:image" content="{{ meta.image | default: "/content/images/icon.jpg" | htmlBaseUrl: "https://yareli.nekoweb.org" }}">
+  <meta property="twitter:image" content="{{ page.url | htmlBaseUrl: "https://yareli.nekoweb.org" }}cover.jpeg">
   <meta property="twitter:description" content="{{ subtitle | strip_html | truncate: 160 }}">
 {% endblock %}
 
 {% block content %}
-<div class="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4">
-  <div class="col-auto sm:col-span-3">
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+  <div class="col-span-4">
     <div class="w-full p-2 sm:p-4 border bc bg">
       <div class="w-full type text-sm mb-4">
         {{ date | date: "%b %d, %Y" }}
         {% if meta.mirror %}&nbsp;|&nbsp;<a class="link" href="{{ meta.mirror }}" rel="_blank">Alternate View</a>{% endif %}
       </div>
+
       <h1 class="text-lg sm:text-3xl font-bold" data-pagefind-meta="title">{{ title }}</h1>
-      <h3 class="text-base sm:text-md font-light italic">{{ subtitle }}</h3>
+      <h3 class="text-base sm:text-md font-light italic mb-2">{{ subtitle }}</h3>
+      <p class="mb-4">
+        {%- for tag in tags offset:1 -%}
+          <span class="type text-xs px-2 py-1 mr-2 border bc rounded-lg"><a class="link" href="">#{{ tag }}</a></span>
+        {%- endfor -%}
+      </p>
+      {% comment %} <img eleventy:output="./" class="w-full" src="{{ page.url }}cover.jpeg" data-pagefind-meta='image[src]'> {% endcomment %}
+      <img eleventy:ignore class="w-full" src="{{ page.url }}cover.jpeg" data-pagefind-meta='image[src]'>
+
       <hr class="border border-dotted bc my-2 sm:my-4">
 
       <div id="content" data-pagefind-body>
         {{ content }}
       </div>
-    </div>
-  </div>
-  <div class="col-auto">
-    <div class="w-full p-2 border bc bg" data-pagefind-ignore>
-      {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
     </div>
   </div>
 </div>

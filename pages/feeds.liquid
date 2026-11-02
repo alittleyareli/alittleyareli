@@ -1,6 +1,18 @@
 ---
-permalink: /posts.xml
+permalink: /feed/tag/{{ tag | slugify }}.xml
 eleventyExcludeFromCollections: true
+
+pagination:
+  alias: tag
+  data: collections
+  size: 1
+  filter:
+    - all
+    - post
+    - posts
+    - tagList
+    - featuredPosts
+  addAllPagesToCollections: false
 
 metadata:
   language: en
@@ -9,7 +21,6 @@ metadata:
   base: "https://yareli.nekoweb.org"
   author:
     name: yareli
-    email: ""
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -19,18 +30,17 @@ metadata:
     <atom:link href="{{ permalink | htmlBaseUrl: metadata.base }}" rel="self" type="application/rss+xml"/>
     <description>{{ metadata.description }}</description>
     <language>{{ metadata.language }}</language>
-    <copyright>Copyright 2025 {{ metadata.author.name }}</copyright>
+    <copyright>Copyright 2026 {{ metadata.author.name }}</copyright>
     <lastBuildDate>{{ "now" | now | dateToRfc822 }}</lastBuildDate>
-
-    {% for post in collections.post reversed %}
+    {%- for post in collections[tag] | reverse -%}
     <item>
       <title>{{ post.data.title }}</title>
       <description>{{ post.data.subtitle }}</description>
       <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
       <author>{{ metadata.author.name }}</author>
       <link>{{ metadata.base }}{{ post.page.url }}</link>
-      <guid>{{ metadata.base }}{{ post.page.url }}</guid>
+      <guid>{{ post.page.url }}</guid>
     </item>
-    {% endfor %}
+    {%- endfor -%}
   </channel>
 </rss>

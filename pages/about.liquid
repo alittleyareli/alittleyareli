@@ -3,17 +3,45 @@ title: about • yareli's press
 layout: main
 ---
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-  <div class="col-span-1 sm:col-span-3">
+  <div class="col-span-4">
     <div class="w-full h-full p-2 border bc bg">
       <h3 class="w-full text-sm font-bold uppercase fg-i bg-i p-1">About Yareli's Press</h3>
 
-      <div id="content">{% renderFile "posts/about.md" %}</div>
-    </div>
-  </div>
+      <div id="content">
+{%- renderTemplate "md" -%}
+## about myself
 
-  <div class="col-span-1 hidden sm:block">
-    <div class="w-full p-2 border bc bg">
-      {% render "_includes/posts.liquid", posts: collections.post, limit: 4, url: page.url %}
+hello... it's yareli. 21. any/all. black. burnt out graphic design undergraduate. depending on where you've met me on the internet, i also go by frissyn, berrymyre, and alaira. this website is where i collect and publish all my writing on video games, anime, manga, personal stuff, and whatever else i might not've posted to twitter first. thanks a bunch for stopping by!
+
+## rapid-fire: the five favorites
+
+**games:** Gravity Rush, Drakengard 3, Money Puzzle Exchanger, Celeste, Guilty Gear 2: Overture
+
+**movies:** Caroline, Look Back, Moonlight, The Case of Hana & Alice, Bottoms
+
+**manga:** Witch Hat Atelier, Land of the Lustrous, Chainsaw Man, Laid-back Camp, Blue Period
+
+**albums:** SCRAPYARD, Why Does the Earth Give Us People to Love?, Magic Alive!, POMPEI // UTILITY, Wallsocket 
+
+## subscribing
+
+i think the internet at large desperately needs to decouple itself from algorithms and recommendation feeds. to that end, if you'd like to keep up with new posts from this blog (thank you!), consider pasting the link to [`/feed.xml`](/feed.xml) into any RSS reader of your choice. it should automatically populate with previous posts, and send notications when new ones go live. you can also filter by any specific tags with `/feed/tag/{tag}.xml`, such as [`/feed/tag/commentary.xml`](/feed/tag/commentary.xml).
+
+the full RSS feed link looks like this: `https://yareli.nekoweb.org/feed.xml`
+
+## about the stack
+
+this website was built myself, with HTML/CSS/JS + MD and [`11ty.js`](https://www.11ty.dev/), and hosted on [`nekoweb.org`](https://nekoweb.org).
+
+- [**`Eleventy`**](https://www.11ty.dev/) - static site generator, blog content manager
+  - [**`tailwind.css (v2)`**](https://tailwindcss.com/) - css framework and utilities package
+  - [**`pagefind.js`**](https://pagefind.app/) - static search and indexing library (as seen at [/pages/archive](/pages/archive))
+- [**`nekoweb.org`**](https://nekoweb.org) - webpage hosting service
+- [**`Github`**](https://github.com/alittleyareli/alittleyareli) - source tracker and version control service
+
+<br><span class="type text-xs">total site updates: <b><!--# updates format="true" --></b> • last site update: <b><!--# flastmod file="index.html" fmt="%b %d, %Y @ %hh:%mm %p" timezone="America/New_York" --></b></span>
+{%- endrenderTemplate  -%}
+      </div>
     </div>
   </div>
 </div>
