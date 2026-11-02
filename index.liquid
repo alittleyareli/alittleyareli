@@ -3,102 +3,82 @@ title: yareli's press
 layout: main
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-8 gap-2">
-  <div class="col-auto sm:col-span-2 flex flex-col flex-wrap">
-    <div class="flex-1 w-full h-full p-2 border bc bg sm:mb-2">
+<div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+  <div class="sm:col-span-5 flex flex-col flex-wrap">
+    <div class="flex-1 w-full h-full p-2 border bc bg">
       <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">yareli's press</h2>
-      <img class="w-16 sm:w-1/4 float-left mr-2 rounded-lg mb-2 sm:mb-0" src="/content/images/icon.jpg">
+      <img class="w-24 sm:w-1/6 float-left mr-2 mb-1 sm:mb-0 rounded-xl" src="/content/images/icon.jpeg">
       <p class="type text-sm text-justify">
-        hello... welcome to my personal blog and website. i write about video games,
-        manga, personal, et. al. the site is mobile-friendly but is best experienced
-        on desktop! please enjoy your stay, and thanks for stopping by.
+        <b>hello there... it's yareli!</b> welcome to my personal blog and website. i write about video games,
+        anime, manga, personal stuff, and whatever else. currently trying to hit around 2-3 new posts a month
+        (as of November)! consider stopping by the <b><a class="type link" href="/pages/about">/about</a></b>
+        page for more information, and/or following  my website <b><a class="type link "href="/feed.xml">via RSS</a></b>
+        if you'd like to be notified of new posts and updates. **this site is mobile-friendly but is best
+        experienced on desktop! please enjoy your stay, and thanks for stopping by.
         <br><br>
-        <b><!--# views --></b> total site visits!
-      </p>
-    </div>
-
-    <div class="hidden sm:block flex-1 w-full h-full p-2 border bc bg">
-      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">read me</h2>
-      <p class="type text-sm text-justify">
-        <b>yareli.</b> 21yo, any/all, black. graphic design undergraduate. depending
-        on where u meet me online, i also go by frissyn, berrymyre, and alairaisover.
-        <br><br>
-        see more on the <a class="link type fg" href="/pages/about/">/about</a> page.
-        <br>
-        follow the site via <a class="link type fg" href="/posts.xml">/posts.xml</a> rss reader.
+        <b><!--# views --></b> unique site visitors so far!
       </p>
     </div>
   </div>
-  <div class="col-auto sm:col-span-6 p-2 border bc bg">
-    <div class="flex flex-col justify-center h-full">
-      <div class="flex-none">
-        <h1 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">Featured Post</h1>
-      </div>
+  <div class="sm:col-span-5 md:col-span-3 flex flex-col flex-wrap">
+    <div class="flex-1 w-full h-full p-2 border bc bg">
+      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">featured post</h2>
 
       <div class="flex-1">
-        {% assign featured = collections.featuredPosts | first %}
-        <img class="w-5/12 hidden sm:block float-left mr-3 ft-img" src="{{ featured.url }}{{ featured.data.meta.image }}" />
-        <p class="type text-xs fg mb-2">{{ featured.date | date: "%b %d, %Y" }}</p>
+        {%- assign featured = collections.featuredPosts | first -%}
+        <p class="type text-xs fg">{{ featured.date | date: "%b %d, %Y" }}</p>
         <h1 class="text-lg sm:text-xl font-bold fg ">{{ featured.data.title }}</h1>
-        <p class="type text-xs fg mb-2 sm:mb-2"><i>{{ featured.data.subtitle }}</i></p>
-        <img class="w-5/12 block sm:hidden w-11/12 mx-auto mb-2 ft-img" src="{{ featured.url }}{{ featured.data.meta.image }}" />
+        <p class="type text-xs fg mb-4"><i>{{ featured.data.subtitle }}</i></p>
+
+        <img eleventy:output="{{ featured.url }}" class="w-full sm:w-5/12 sm:block float-left mr-3 mb-2 sm:mb-0 ft-img" src="{{ featured.url }}cover.jpeg" />
 
         <div id="content" class="text-justify strip-content">
-          {{ featured.content | truncatewords: 152 | replace: "<br>", " " }}
+          {{ featured.content | truncatewords: 81 | replace: "<br>", " " }}
         </div>
       </div>
 
-      <div class="flex-none mt-2">
+      <div class="flex-1 mt-4">
         <a class="link text-sm type font-black uppercase" href="{{ featured.url }}">Read Full Post &gt;&gt;</a>
       </div>
     </div>
   </div>
-  <div class="col-auto sm:col-span-6 p-2 border bc bg">
-    <div class="flex flex-col justify-center h-full">
-      <div class="flex-none">
-        <h1 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">Latest Posts</h1>
+  <div class="sm:col-span-5 md:col-span-2 flex flex-col flex-wrap">
+    <div class="flex-1 w-full h-full p-2 border bc bg">
+      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">recent posts</h2>
+
+      <div class="flex-1">
+        {% assign posts = collections.posts | reverse %}
+        {% for post in posts limit:5 %}
+          <div class="mb-2 sm:mb-4">
+            <div class="text-xxs type uppercase">{{ post.date | date: "%Y-%m-%d"  }}</div>
+            <a class="link fg" href="{{ post.url }}"><b>{{ post.data.title }}</b></a>
+          </div>
+        {% endfor %}
       </div>
 
-      {%- assign n = 0 -%}
-      {%- assign posts = collections.post | reverse -%}
-      <div class="flex-1 pr-1">
-        <div class="grid grid-cols-1 sm:grid-cols-2 grid-flow-row w-full pb-1 gap-4 w-full">
-        {% for i in (0..6) %}
-          {%- if posts[n].data.meta.featured %}{% assign n = n | plus: 1 %}{% assign i = i | minus: 1 %}{% continue %}{% endif -%}
-          <div class="col-auto">
-            <div class="flex flex-row w-full gap-x-2 sm:gap-x-3">
-              <div class="flex-none">
-                <img class="w-36 h-36 object-cover ft-img" src="{{ posts[n].url }}{{ posts[n].data.meta.image }}" />
-              </div>
-              <div class="flex-1">
-                <div class="flex flex-col flex-wrap justify-center w-full h-full">
-                  <div class="flex-auto">
-                    <p class="type text-xs fg mt-4">{{ posts[n].date | date: "%b %d, %Y" }}</p>
-                  </div>
-                  <div class="flex-auto">
-                    <h1 class="text-md font-bold fg"><a  class="link" href="{{ posts[n].url }}">{{ posts[n].data.title }}</a></h1>
-                    <p class="type text-xs fg"><i>{{ posts[n].data.subtitle }}</i></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% assign n = n | plus: 1 -%}
-        {%- endfor -%}
-
-        <a class="link text-sm type font-black uppercase" href="/pages/archive">View Full Archive &gt;&gt;</a>
-        </div>
+      <div class="flex-1 mt-6">
+        <a class="link text-sm type font-black uppercase" href="/pages/archive/">See Full Archive &gt;&gt;</a>
       </div>
     </div>
   </div>
-  <div class="col-auto sm:col-span-2 flex flex-col flex-wrap">
-    <div class="flex-none w-full sm:h-1/3 p-2 border bc bg">
-      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">site map</h2>
-      <ul class="list-disc list-inside text-xs">
-          <li>total site updates: <b><!--# updates format="true" --></b></li>
-          <li>last site update: <b><!--# flastmod file="index.html" fmt="%b %d, %Y @ %hh:%mm %p" timezone="America/New_York" --></b></li>
-          <li>view site source here: <b><a class="link" href="https://github.com/alittleyareli/alittleyareli">github</a></b></li>
-      </ul>
+  <div class="sm:col-span-5 flex flex-col flex-wrap">
+    <div class="flex-1 w-full h-full p-2 border bc bg">
+      <h2 class="w-full text-sm font-bold uppercase fg-i bg-i p-1 mb-2">buttons n' badges !!!</h2>
+
+      <div class="flex flex-1 flex-wrap gap-1 mx-auto w-11/12 sm:w-2/3 md:w-1/2">
+        <div class="flex-auto"><a href="https://lakespirit.love/"><img eleventy:ignore src="/content/images/88x31/lakespirit.png"></a></div>
+        <div class="flex-auto"><a href="https://systemdrift.neocities.org/"><img eleventy:ignore src="/content/images/88x31/systemdrift.gif"></a></div>
+        <div class="flex-auto"><a href="https://steelonbone.neocities.org/"><img eleventy:ignore src="/content/images/88x31/steelonbone.png" ></a></div>
+        <div class="flex-auto"><img eleventy:ignore src="/content/images/88x31/exchanger.png" ></div>
+        <div class="flex-auto"><a href="https://www.warppoint.games/"><img eleventy:ignore src="/content/images/88x31/warp-point.png"></a></div>
+        <div class="flex-auto"><a href="https://nekoweb.org/"><img eleventy:ignore src="/content/images/88x31/nekoweb.gif" ></a></div>
+        <div class="flex-auto"><a href="https://store.steampowered.com/app/437000/GUILTY_GEAR_2_OVERTURE/"><img eleventy:ignore src="/content/images/88x31/overture.png" ></a></div>
+        <div class="flex-auto"><a href="https://www.playstation.com/en-us/games/gravity-rush-2/"><img eleventy:ignore src="/content/images/88x31/tenebria.png" ></a></div>
+        <div class="flex-auto"><img eleventy:ignore src="/content/images/88x31/icbanner.gif" ></div>
+        <div class="flex-auto"><img eleventy:ignore src="/content/images/88x31/notepad.gif" ></div>
+        <div class="flex-auto"><a href="https://store.steampowered.com/app/696180/Bullet_Witch/"><img eleventy:ignore src="/content/images/88x31/witch.png" ></a></div>
+        <div class="flex-auto"><a href="https://yareli.nekoweb.org"><img eleventy:ignore src="/content/images/88x31/yareli.gif" ></a></div>
+      </div>
     </div>
   </div>
 </div>
