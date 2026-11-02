@@ -1,27 +1,27 @@
+import path from 'node:path';
+import crypto from 'node:crypto';
+
 import * as cheerio from "cheerio";
 import * as pagefind from "pagefind";
 
-import { inspect } from "node:util";
-import { EleventyRenderPlugin } from "@11ty/eleventy";
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { dateToRfc3339, dateToRfc822 } from "@11ty/eleventy-plugin-rss";
+import { HtmlBasePlugin, RenderPlugin } from "@11ty/eleventy";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 const output = "_dist";
-const statics = "{svg,webp,png,jpg,jpeg,gif}";
 
-export default async function(eleventyConfig) {
+export default function(eleventyConfig) {
   eleventyConfig.setOutputDirectory(output);
 
+  eleventyConfig.setLayoutsDirectory("_includes/");
+
 	eleventyConfig.addPassthroughCopy("favicon.ico");
-	eleventyConfig.addPassthroughCopy("content/");
+  eleventyConfig.addPassthroughCopy("content/");
 
-	eleventyConfig.addPassthroughCopy(`posts/**/*.${statics}`, {mode: "html-relative"});
+  eleventyConfig.addPassthroughCopy("posts/**/*.jpeg");
 
-	eleventyConfig.ignores.add("README.md");
-	eleventyConfig.ignores.add("posts/about.md");
-
-  eleventyConfig.addFilter("inspect", (obj) => {
-    return inspect(obj, {sorted: true});
-  });
+	eleventyConfig.addFilter("dateToRfc3339", dateToRfc3339);
+	eleventyConfig.addFilter("dateToRfc822", dateToRfc822);
 
 	eleventyConfig.addFilter("now", (obj) => {
 		return Date();
@@ -29,16 +29,6 @@ export default async function(eleventyConfig) {
 
 	eleventyConfig.addFilter("default", (obj, value) => {
 		return obj ? obj : value;
-	});
-
-	eleventyConfig.addFilter("everyNth", (obj, s, n) => {
-			const res = [];
-
-			for (let i = s; i < obj.length; i += n) {
-				res.push(obj[i]);
-			}
-
-			return res;
 	});
 
 	eleventyConfig.addFilter("contentAsXHTML", (obj) => {
@@ -61,13 +51,8 @@ export default async function(eleventyConfig) {
 			let el = doc("#content p > img");
 
 			if (el.length < 1) {
-				doc("#content").prepend(
-					"<span data-pagefind-meta='image[src]' src='/content/images/blank.jpg'></span>"
-				);
+				doc("#content").prepend("<span data-pagefind-meta='image[src]' src='/content/images/blank.jpeg'></span>");
 			} else {
-				let absoluteP = "/" + (el.attr("src") || "").replace(".", p.split("/").slice(2, -1).join("/"));
-
-				el.attr("src", absoluteP);
 				el.attr("data-pagefind-meta", "image[src]");
 			};
 
@@ -77,29 +62,22 @@ export default async function(eleventyConfig) {
 		return content;
 	});
 
-	eleventyConfig.addPlugin(pluginRss);
-	eleventyConfig.addPlugin(EleventyRenderPlugin);
+	eleventyConfig.addPlugin(RenderPlugin);
+	eleventyConfig.addPlugin(HtmlBasePlugin);
 
-	eleventyConfig.addFilter("dateToRfc3339", pluginRss.dateToRfc3339);
-	eleventyConfig.addFilter("dateToRfc822", pluginRss.dateToRfc822);
-
-	// eleventyConfig.addPlugin(feedPlugin, {
-	// 	type: "rss",
-	// 	outputPath: "/feed.xml",
-	// 	collection: {
-	// 		name: "post",
-	// 		limit: 0,
-	// 	},
-	// 	metadata: {
-	// 		language: "en",
-	// 		title: "yareli's press",
-	// 		subtitle: "occasional essays and letters on video games, manga, personal, et al.",
-	// 		base: "https://yareli.nekoweb.org",
-	// 		author: {
-	// 			name: "yareli"
-	// 		}
-	// 	}
-	// });
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		formats: ["auto"],
+		widths: ["auto"],
+		urlPath: "/content/images/",
+		useCache: false,
+		htmlOptions: {
+			imgAttributes: {
+        alt: "",
+				loading: "lazy",
+				decoding: "async",
+			}
+		},
+	});
 
   eleventyConfig.on('eleventy.after', async () => {
 		const { index } = await pagefind.createIndex();
