@@ -1,15 +1,7 @@
-rm -r _dist
-# rm -r yareli.nekoweb.org
+rm -rf .cache
 
-eleventy
+npx @11ty/eleventy
 
-# cp -r _dist/content/pagefind/ yareli.nekoweb.org/content/
-# cp -r _dist/content/pagefind/fragment/ yareli.nekoweb.org/content/pagefind/
-# cp -r _dist/content/pagefind/index/ yareli.nekoweb.org/content/pagefind/
-
-tar -a -c -f yareli.nekoweb.org.zip _dist
-
-rm -r _dist
-# rm -r yareli.nekoweb.org
-
-echo 'Done.'
+mv _dist yareli.nekoweb.org
+tar -c -a -f yareli.nekoweb.org.zip yareli.nekoweb.org
+mv yareli.nekoweb.org _build
