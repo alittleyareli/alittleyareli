@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
   new PagefindUI({
     element: "#search",
     showImages: true,

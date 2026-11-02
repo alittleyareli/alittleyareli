@@ -11,6 +11,11 @@
   100% { opacity: 1; }
 }
 
+/* #container {
+  max-width: 1024px; 
+  1024 + (1024 * 0.05)
+} */
+
 html, body {
   height: 100vh;
   cursor: var(--cursor-default) 16 0, default;
@@ -55,6 +60,10 @@ svg.icon {
   height: 26px;
   color: var(--color-2);
   fill: var(--color-2);
+}
+
+img._88x31 {
+  image-rendering: crisp-edges;
 }
 
 @media (min-width: 768px) {
